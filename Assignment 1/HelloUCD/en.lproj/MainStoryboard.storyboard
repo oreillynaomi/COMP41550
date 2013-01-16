@@ -13,12 +13,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hello UCD!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5S-1y-hwq">
+                                <color key="backgroundColor" red="0.65098041296005249" green="0.81568634510040283" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="4VW-dA-s7q"/>
                                     <constraint firstAttribute="width" constant="223" id="S52-ro-4BQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="30"/>
+                                <color key="textColor" red="0.002984706291274754" green="0.0060103243555825175" blue="0.0069208559782608647" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ucdlogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zw0-Os-Y7c">
@@ -28,7 +29,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.65098041296005249" green="0.81568634510040283" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="Z5S-1y-hwq" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="fHQ-fo-YIz"/>
                             <constraint firstItem="Z5S-1y-hwq" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="mjz-06-iPZ"/>
@@ -44,6 +45,14 @@
     <resources>
         <image name="ucdlogo.png" width="196" height="285"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
