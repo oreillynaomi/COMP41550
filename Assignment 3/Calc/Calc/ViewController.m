@@ -8,22 +8,29 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
+@synthesize calcModel = _calcModel;
+@synthesize calcDisplay = _calcDisplay;
+@synthesize isInTheMiddleOfTypingSomething = _isInTheMiddleOfTypingSomething;
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)digitPressed:(UIButton *)sender {
+    NSString *digit = sender.titleLabel.text;
+    if(self.isInTheMiddleOfTypingSomething)
+        self.calcDisplay.text = [self.calcDisplay.text stringByAppendingString:digit];
+    else {
+        [self.calcDisplay setText:digit];
+        self.isInTheMiddleOfTypingSomething = YES;
+    }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)operationPressed:(UIButton *)sender {
+    if(self.isInTheMiddleOfTypingSomething) {
+        self.calcModel.operand = [self.calcDisplay.text doubleValue];
+        self.isInTheMiddleOfTypingSomething = NO;
+    }
+    NSString *operation = [[sender titleLabel] text];
+    double result = [[self calcModel] performOperation:operation];
+    [self.calcDisplay setText:[NSString stringWithFormat:@"%g", result]];
 }
 
 @end

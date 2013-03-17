@@ -10,4 +10,9 @@
 
 @interface CalcModel : NSObject
 
+@property (nonatomic) double operand;
+@property (nonatomic) double waitingOperand;
+@property (nonatomic,strong) NSString *waitingOperation;
+- (double)performOperation:(NSString *)operation;
+
 @end

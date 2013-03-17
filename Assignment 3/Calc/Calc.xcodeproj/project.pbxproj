@@ -18,6 +18,7 @@
 		B39CEB9E16D01D8500CC03AA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39CEB9D16D01D8500CC03AA /* Default-568h@2x.png */; };
 		B39CEBA116D01D8500CC03AA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39CEB9F16D01D8500CC03AA /* MainStoryboard.storyboard */; };
 		B39CEBA416D01D8500CC03AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B39CEBA316D01D8500CC03AA /* ViewController.m */; };
+		B39CEBAC16D01E3100CC03AA /* CalcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B39CEBAB16D01E3100CC03AA /* CalcModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		B39CEBA016D01D8500CC03AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B39CEBA216D01D8500CC03AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B39CEBA316D01D8500CC03AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B39CEBAA16D01E3100CC03AA /* CalcModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcModel.h; sourceTree = "<group>"; };
+		B39CEBAB16D01E3100CC03AA /* CalcModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalcModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 			children = (
 				B39CEB9616D01D8500CC03AA /* AppDelegate.h */,
 				B39CEB9716D01D8500CC03AA /* AppDelegate.m */,
+				B39CEBAA16D01E3100CC03AA /* CalcModel.h */,
+				B39CEBAB16D01E3100CC03AA /* CalcModel.m */,
 				B39CEB9F16D01D8500CC03AA /* MainStoryboard.storyboard */,
 				B39CEBA216D01D8500CC03AA /* ViewController.h */,
 				B39CEBA316D01D8500CC03AA /* ViewController.m */,
@@ -176,6 +181,7 @@
 				B39CEB9416D01D8500CC03AA /* main.m in Sources */,
 				B39CEB9816D01D8500CC03AA /* AppDelegate.m in Sources */,
 				B39CEBA416D01D8500CC03AA /* ViewController.m in Sources */,
+				B39CEBAC16D01E3100CC03AA /* CalcModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
