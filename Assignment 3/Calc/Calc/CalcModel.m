@@ -34,10 +34,11 @@
         self.operand = - self.operand;
     }
     else if([@"1/x" isEqualToString:operation]) {
-        if([@"0" isEqual:self.operand]) {
+        if(self.operand == 0) {
             return self.operand;
+        } else {
+            self.operand = 1 / self.operand;
         }
-        self.operand = 1 / self.operand;
     }
     else if([@"sin" isEqualToString:operation]) {
         self.operand = sin(self.operand);
@@ -49,6 +50,7 @@
         self.operand = 0;
         self.waitingOperand = 0;
         self.waitingOperation = nil;
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedDisplayValue"];
     }
     else {
         [self performWaitingOperation];
@@ -56,6 +58,30 @@
         self.waitingOperand = self.operand;
     }
     return self.operand;
+}
+
+- (void)setVariableAsOperand:(NSString *)variableName {
+    
+}
+
++ (double)evaluateExpression:(id)anExpressionusingVariableValues:(NSDictionary *)variables {
+    
+}
+
++ (NSSet *)variablesInExpression:(id)anExpression {
+    
+}
+
+- (NSString *)descriptionOfExpression:(id)anExpression {
+    
+}
+
++ (id)propertyListForExpression:(id)anExpression {
+    
+}
+
+- (id)expressionForPropertyList:(id)propertyList {
+    
 }
 
 @end

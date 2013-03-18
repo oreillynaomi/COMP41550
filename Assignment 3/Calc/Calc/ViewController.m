@@ -16,11 +16,23 @@
 - (IBAction)digitPressed:(UIButton *)sender {
     NSString *digit = sender.titleLabel.text;
     if(self.isInTheMiddleOfTypingSomething)
-        self.calcDisplay.text = [self.calcDisplay.text stringByAppendingString:digit];
+        if([@"." isEqualToString:digit]) {
+            if([_calcDisplay.text rangeOfString:@"."].location != NSNotFound){
+                return;
+            } else {
+                self.calcDisplay.text = [self.calcDisplay.text stringByAppendingString:digit];
+            }
+        } else {
+            self.calcDisplay.text = [self.calcDisplay.text stringByAppendingString:digit];
+        }
     else {
         [self.calcDisplay setText:digit];
         self.isInTheMiddleOfTypingSomething = YES;
     }
+}
+
+- (IBAction)setOperand:(id)sender {
+    
 }
 
 - (IBAction)operationPressed:(UIButton *)sender {
@@ -31,6 +43,24 @@
     NSString *operation = [[sender titleLabel] text];
     double result = [[self calcModel] performOperation:operation];
     [self.calcDisplay setText:[NSString stringWithFormat:@"%g", result]];
+}
+    
+- (IBAction) setOrAccessUserDefaults:(UIButton *) sender {
+    NSString *operation = [[sender titleLabel] text];
+    if([@"store" isEqualToString:operation]){
+        [[NSUserDefaults standardUserDefaults] setDouble:_calcDisplay.text.doubleValue forKey:@"savedDisplayValue"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else if([@"recall" isEqualToString:operation]) {
+        if([[NSUserDefaults standardUserDefaults] valueForKey:@"savedDisplayValue"]){
+            self.calcDisplay.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedDisplayValue"];
+        } else {
+            return;
+        }
+    } else if([@"mem +" isEqualToString:operation]) {
+        double subtotal = _calcDisplay.text.doubleValue + [[NSUserDefaults standardUserDefaults] doubleForKey:@"savedDisplayValue"];
+        [[NSUserDefaults standardUserDefaults] setDouble:subtotal forKey:@"savedDisplayValue"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 @end

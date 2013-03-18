@@ -15,4 +15,5 @@
 @property (nonatomic) BOOL isInTheMiddleOfTypingSomething;
 - (IBAction)digitPressed:(UIButton *)sender;
 - (IBAction)operationPressed:(UIButton *)sender;
+- (IBAction) setOrAccessUserDefaults:(UIButton *) sender;
 @end
