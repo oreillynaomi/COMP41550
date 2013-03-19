@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Math.h"
 
 @implementation ViewController
 @synthesize calcModel = _calcModel;
@@ -15,6 +16,7 @@
 
 - (IBAction)digitPressed:(UIButton *)sender {
     NSString *digit = sender.titleLabel.text;
+    
     if(self.isInTheMiddleOfTypingSomething)
         if([@"." isEqualToString:digit]) {
             if([_calcDisplay.text rangeOfString:@"."].location != NSNotFound){
@@ -31,10 +33,6 @@
     }
 }
 
-- (IBAction)setOperand:(id)sender {
-    
-}
-
 - (IBAction)operationPressed:(UIButton *)sender {
     if(self.isInTheMiddleOfTypingSomething) {
         self.calcModel.operand = [self.calcDisplay.text doubleValue];
@@ -47,20 +45,21 @@
     
 - (IBAction) setOrAccessUserDefaults:(UIButton *) sender {
     NSString *operation = [[sender titleLabel] text];
-    if([@"store" isEqualToString:operation]){
+    if([@"STO" isEqualToString:operation]){
         [[NSUserDefaults standardUserDefaults] setDouble:_calcDisplay.text.doubleValue forKey:@"savedDisplayValue"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-    } else if([@"recall" isEqualToString:operation]) {
+    } else if([@"RCL" isEqualToString:operation]) {
         if([[NSUserDefaults standardUserDefaults] valueForKey:@"savedDisplayValue"]){
             self.calcDisplay.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedDisplayValue"];
         } else {
             return;
         }
-    } else if([@"mem +" isEqualToString:operation]) {
+    } else if([@"M+" isEqualToString:operation]) {
         double subtotal = _calcDisplay.text.doubleValue + [[NSUserDefaults standardUserDefaults] doubleForKey:@"savedDisplayValue"];
         [[NSUserDefaults standardUserDefaults] setDouble:subtotal forKey:@"savedDisplayValue"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    NSLog([NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"savedDisplayValue"]]);
 }
 
 @end

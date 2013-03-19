@@ -60,28 +60,4 @@
     return self.operand;
 }
 
-- (void)setVariableAsOperand:(NSString *)variableName {
-    
-}
-
-+ (double)evaluateExpression:(id)anExpressionusingVariableValues:(NSDictionary *)variables {
-    
-}
-
-+ (NSSet *)variablesInExpression:(id)anExpression {
-    
-}
-
-- (NSString *)descriptionOfExpression:(id)anExpression {
-    
-}
-
-+ (id)propertyListForExpression:(id)anExpression {
-    
-}
-
-- (id)expressionForPropertyList:(id)propertyList {
-    
-}
-
 @end
