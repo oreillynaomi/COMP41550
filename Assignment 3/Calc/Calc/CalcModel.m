@@ -14,6 +14,17 @@
 @synthesize operand = _operand;
 @synthesize waitingOperand = _waitingOperand;
 @synthesize waitingOperation = _waitingOperation;
+@synthesize expression = _expression;
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        _expression = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (void)performWaitingOperation
 {
@@ -28,6 +39,8 @@
 }
 
 - (double)performOperation:(NSString *)operation {
+    [_expression addObject:[NSString stringWithFormat:@"operation %@", operation]];
+    
     if([operation isEqual:@"sqrt"])
         self.operand = sqrt(self.operand);
     else if([@"+/-" isEqualToString:operation]) {
@@ -60,4 +73,60 @@
     return self.operand;
 }
 
+- (void)setLiteralAsOperand:(NSString *)variableName{
+    [_expression addObject:[NSString stringWithFormat:@"operand_literal %@", variableName]];
+    self.operand = variableName.doubleValue;
+}
+
+
+- (void)setVariableAsOperand:(NSString *)variableName{
+    [_expression addObject:[NSString stringWithFormat:@"operand_variable %@", variableName]];
+}
+    
++ (double)evaluateExpression:(id)anExpression
+         usingVariableValues:(NSDictionary *)variables {
+    
+    double result = 0;
+    NSString *operation;
+    CalcModel *model = [[CalcModel alloc] init];
+    
+    for (NSString* str in anExpression)
+    {
+        if([str hasPrefix:@"operation"])
+        {
+            operation = [str substringFromIndex:10];
+            result = [model performOperation:operation];
+        }
+        else if([str hasPrefix:@"operand_literal"])
+        {
+            NSString *op_str = [str substringFromIndex:16];
+            [model setLiteralAsOperand:op_str];
+        }
+        else if([str hasPrefix:@"operand_variable"])
+        {
+            NSString *op_str = [variables objectForKey:[str substringFromIndex:17]];
+            [model setLiteralAsOperand:op_str];
+        }
+    }
+    
+    return result;
+}
+
++ (NSSet *)variablesInExpression:(id)anExpression {
+    
+    
+}
+
+- (NSString *)descriptionOfExpression:(id)anExpression {
+    
+}
+
++ (id)propertyListForExpression:(id)anExpression {
+    
+}
+
+- (id)expressionForPropertyList:(id)propertyList {
+    
+    
+}
 @end
