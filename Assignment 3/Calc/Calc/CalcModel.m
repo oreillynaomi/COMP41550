@@ -114,19 +114,18 @@
 
 + (NSSet *)variablesInExpression:(id)anExpression {
     
-    
+    return nil;
 }
 
 - (NSString *)descriptionOfExpression:(id)anExpression {
-    
+    return nil;
 }
 
 + (id)propertyListForExpression:(id)anExpression {
-    
+    return nil;
 }
 
 - (id)expressionForPropertyList:(id)propertyList {
-    
-    
+    return nil;
 }
 @end
