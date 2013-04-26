@@ -3,7 +3,6 @@
 //  Project
 //
 //  Created by Naomi O' Reilly on 24/04/2013.
-//  Copyright Naomi O' Reilly 2013. All rights reserved.
 //
 
 

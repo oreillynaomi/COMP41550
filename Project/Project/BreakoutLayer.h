@@ -21,17 +21,17 @@ struct BlockData
 };
 
 @interface BreakoutLayer : CCLayer {
-    b2World *_world;
-    b2Body *_groundBody;
-    b2Body *_paddleBody;
-    b2Body *_ballBody;
+    b2World *_breakoutWorld;
+    b2Body *_ground;
+    b2Body *_paddle;
+    b2Body *_ball;
     b2MouseJoint *_mouseJoint;
     MyContactListener *_contactListener;
     b2Fixture *_bottomFixture;
     b2Fixture *_ballFixture;
     b2Fixture *_paddleFixture;
     std::map<b2Body*, BlockData> blockData;
-    int score;
+    int *score;
 }
 
 + (id) scene;

@@ -198,17 +198,11 @@
 		B39AF2C017293EA800D5C149 /* purple_block.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF2BF17293EA800D5C149 /* purple_block.png */; };
 		B39AF2C217293EAF00D5C149 /* red_block.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF2C117293EAF00D5C149 /* red_block.png */; };
 		B39AF2C417293EB600D5C149 /* yellow_block.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF2C317293EB600D5C149 /* yellow_block.png */; };
-		B39AF58917298DF500D5C149 /* ChapterSelect.mm in Sources */ = {isa = PBXBuildFile; fileRef = B39AF57E17298DF500D5C149 /* ChapterSelect.mm */; };
-		B39AF58A17298DF500D5C149 /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = B39AF58017298DF500D5C149 /* GameScene.mm */; };
 		B39AF58C17298DF500D5C149 /* MainMenu.mm in Sources */ = {isa = PBXBuildFile; fileRef = B39AF58417298DF500D5C149 /* MainMenu.mm */; };
 		B39AF58E17298DF500D5C149 /* SceneManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B39AF58817298DF500D5C149 /* SceneManager.mm */; };
-		B39AF5951729A3DF00D5C149 /* highscore-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF58F1729A3DF00D5C149 /* highscore-selected.png */; };
-		B39AF5961729A3DF00D5C149 /* highscore.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF5901729A3DF00D5C149 /* highscore.png */; };
 		B39AF5991729A3DF00D5C149 /* play-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF5931729A3DF00D5C149 /* play-selected.png */; };
 		B39AF59D1729B05700D5C149 /* arrow-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF59B1729B05700D5C149 /* arrow-selected.png */; };
 		B39AF59E1729B05700D5C149 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF59C1729B05700D5C149 /* arrow.png */; };
-		B39AF5A31729B42E00D5C149 /* score-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF59F1729B42E00D5C149 /* score-hd.png */; };
-		B39AF5A41729B42E00D5C149 /* score-selected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF5A01729B42E00D5C149 /* score-selected-hd.png */; };
 		B39AF5A51729B42E00D5C149 /* play-selected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF5A11729B42E00D5C149 /* play-selected-hd.png */; };
 		B39AF5A61729B42E00D5C149 /* play-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF5A21729B42E00D5C149 /* play-hd.png */; };
 		B39AF5A81729B54B00D5C149 /* arrow-selected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = B39AF5A71729B54A00D5C149 /* arrow-selected-hd.png */; };
@@ -607,21 +601,13 @@
 		B39AF2BF17293EA800D5C149 /* purple_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple_block.png; sourceTree = "<group>"; };
 		B39AF2C117293EAF00D5C149 /* red_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_block.png; sourceTree = "<group>"; };
 		B39AF2C317293EB600D5C149 /* yellow_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_block.png; sourceTree = "<group>"; };
-		B39AF57D17298DF500D5C149 /* ChapterSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChapterSelect.h; sourceTree = "<group>"; };
-		B39AF57E17298DF500D5C149 /* ChapterSelect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChapterSelect.mm; sourceTree = "<group>"; };
-		B39AF57F17298DF500D5C149 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		B39AF58017298DF500D5C149 /* GameScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameScene.mm; sourceTree = "<group>"; };
 		B39AF58317298DF500D5C149 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		B39AF58417298DF500D5C149 /* MainMenu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainMenu.mm; sourceTree = "<group>"; };
 		B39AF58717298DF500D5C149 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		B39AF58817298DF500D5C149 /* SceneManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SceneManager.mm; sourceTree = "<group>"; };
-		B39AF58F1729A3DF00D5C149 /* highscore-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "highscore-selected.png"; path = "Resources/highscore-selected.png"; sourceTree = "<group>"; };
-		B39AF5901729A3DF00D5C149 /* highscore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highscore.png; path = Resources/highscore.png; sourceTree = "<group>"; };
 		B39AF5931729A3DF00D5C149 /* play-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play-selected.png"; path = "Resources/play-selected.png"; sourceTree = "<group>"; };
 		B39AF59B1729B05700D5C149 /* arrow-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-selected.png"; path = "Resources/arrow-selected.png"; sourceTree = "<group>"; };
 		B39AF59C1729B05700D5C149 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = Resources/arrow.png; sourceTree = "<group>"; };
-		B39AF59F1729B42E00D5C149 /* score-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "score-hd.png"; path = "Resources/score-hd.png"; sourceTree = "<group>"; };
-		B39AF5A01729B42E00D5C149 /* score-selected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score-selected-hd.png"; sourceTree = "<group>"; };
 		B39AF5A11729B42E00D5C149 /* play-selected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play-selected-hd.png"; path = "Resources/play-selected-hd.png"; sourceTree = "<group>"; };
 		B39AF5A21729B42E00D5C149 /* play-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-hd.png"; sourceTree = "<group>"; };
 		B39AF5A71729B54A00D5C149 /* arrow-selected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-selected-hd.png"; path = "Resources/arrow-selected-hd.png"; sourceTree = "<group>"; };
@@ -713,14 +699,10 @@
 				B39AF5AE1729CE2C00D5C149 /* arrow-selected-hd.png */,
 				B39AF5A91729B58400D5C149 /* arrow-hd.png */,
 				B39AF5A71729B54A00D5C149 /* arrow-selected-hd.png */,
-				B39AF59F1729B42E00D5C149 /* score-hd.png */,
-				B39AF5A01729B42E00D5C149 /* score-selected-hd.png */,
 				B39AF5A11729B42E00D5C149 /* play-selected-hd.png */,
 				B39AF5A21729B42E00D5C149 /* play-hd.png */,
 				B39AF59B1729B05700D5C149 /* arrow-selected.png */,
 				B39AF59C1729B05700D5C149 /* arrow.png */,
-				B39AF58F1729A3DF00D5C149 /* highscore-selected.png */,
-				B39AF5901729A3DF00D5C149 /* highscore.png */,
 				B39AF5931729A3DF00D5C149 /* play-selected.png */,
 				B39AF2C317293EB600D5C149 /* yellow_block.png */,
 				B39AF2C117293EAF00D5C149 /* red_block.png */,
@@ -1270,10 +1252,6 @@
 		B39AF57C17298DF500D5C149 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				B39AF57D17298DF500D5C149 /* ChapterSelect.h */,
-				B39AF57E17298DF500D5C149 /* ChapterSelect.mm */,
-				B39AF57F17298DF500D5C149 /* GameScene.h */,
-				B39AF58017298DF500D5C149 /* GameScene.mm */,
 				B39AF58317298DF500D5C149 /* MainMenu.h */,
 				B39AF58417298DF500D5C149 /* MainMenu.mm */,
 				B39AF58717298DF500D5C149 /* SceneManager.h */,
@@ -1356,13 +1334,9 @@
 				B39AF2C017293EA800D5C149 /* purple_block.png in Resources */,
 				B39AF2C217293EAF00D5C149 /* red_block.png in Resources */,
 				B39AF2C417293EB600D5C149 /* yellow_block.png in Resources */,
-				B39AF5951729A3DF00D5C149 /* highscore-selected.png in Resources */,
-				B39AF5961729A3DF00D5C149 /* highscore.png in Resources */,
 				B39AF5991729A3DF00D5C149 /* play-selected.png in Resources */,
 				B39AF59D1729B05700D5C149 /* arrow-selected.png in Resources */,
 				B39AF59E1729B05700D5C149 /* arrow.png in Resources */,
-				B39AF5A31729B42E00D5C149 /* score-hd.png in Resources */,
-				B39AF5A41729B42E00D5C149 /* score-selected-hd.png in Resources */,
 				B39AF5A51729B42E00D5C149 /* play-selected-hd.png in Resources */,
 				B39AF5A61729B42E00D5C149 /* play-hd.png in Resources */,
 				B39AF5A81729B54B00D5C149 /* arrow-selected-hd.png in Resources */,
@@ -1538,8 +1512,6 @@
 				B39AF2A0172895BE00D5C149 /* GLES-Render.mm in Sources */,
 				B39AF2AE1729378600D5C149 /* MyContactListener.mm in Sources */,
 				B39AF2B417293B7B00D5C149 /* GameOverLayer.mm in Sources */,
-				B39AF58917298DF500D5C149 /* ChapterSelect.mm in Sources */,
-				B39AF58A17298DF500D5C149 /* GameScene.mm in Sources */,
 				B39AF58C17298DF500D5C149 /* MainMenu.mm in Sources */,
 				B39AF58E17298DF500D5C149 /* SceneManager.mm in Sources */,
 			);

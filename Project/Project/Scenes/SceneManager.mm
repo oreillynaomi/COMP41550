@@ -12,20 +12,7 @@
 
 @end
 
-
 @implementation SceneManager
-
-/*  ___Template___________________________________
- 
- Step 3 - Add implementation to call scene
- ______________________________________________
- 
- 
- +(void) goSceneName {
- [SceneManager go:[SceneName node]];
- }
- 
- */
 
 +(void) go: (CCLayer *) layer {
     CCDirector *director = [CCDirector sharedDirector];
@@ -45,15 +32,11 @@
     return newScene;
 }
 
-+(void) goMainMenu {
++(void) goToMainMenu {
     [SceneManager go:[MainMenu node]];
 }
 
-+(void) goChapterSelect {
-    [SceneManager go:[ChapterSelect node]];
-}
-
-+(void) goStartGame {
++(void) goToStartGame {
     [SceneManager go:[BreakoutLayer node]];
 }
 @end

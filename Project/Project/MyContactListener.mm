@@ -3,7 +3,6 @@
 //  Project
 //
 //  Created by Naomi O' Reilly on 25/04/2013.
-//  Copyright (c) 2013 Naomi O' Reilly. All rights reserved.
 //
 
 #import "MyContactListener.h"
@@ -16,8 +15,7 @@ MyContactListener::~MyContactListener() {
 }
 
 void MyContactListener::BeginContact(b2Contact* contact) {
-    // We need to copy out the data because the b2Contact passed in
-    // is reused.
+
     MyContact myContact = { contact->GetFixtureA(), contact->GetFixtureB() };
     _contacts.push_back(myContact);
     _newContacts.push_back(myContact);

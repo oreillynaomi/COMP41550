@@ -3,7 +3,6 @@
 //  Box2DBreakout
 //
 //  Created by Naomi O' Reilly on 23/04/2013.
-//  Copyright 2013 Naomi O' Reilly. All rights reserved.
 //
 #import "GameOverLayer.h"
 #import "BreakoutLayer.h"
@@ -21,14 +20,15 @@
     if ((self = [super initWithColor:ccc4(0, 0, 0, 0)])) {
         
         NSString * message;
+        
         if (won) {
-            message = @"You Won!";
+            message = @"LEVEL COMPLETE!";
         } else {
-            message = @"GAME OVER";
+            message = @"GAME OVER!";
         }
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        CCLabelTTF * label = [CCLabelTTF labelWithString:message fontName:@"Arial" fontSize:32];
+        CCLabelTTF * label = [CCLabelTTF labelWithString:message fontName:@"marker felt" fontSize:32];
         label.color = ccc3(213,40,100);
         label.position = ccp(winSize.width/2, winSize.height/2);
         [self addChild:label];

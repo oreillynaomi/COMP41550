@@ -3,11 +3,11 @@
 //  Project
 //
 //  Created by Naomi O' Reilly on 24/04/2013.
-//  Copyright Naomi O' Reilly 2013. All rights reserved.
 //
 
 #import "BreakoutLayer.h"
 #import "GameOverLayer.h"
+#import "SceneManager.h"
 
 @implementation BreakoutLayer
 
@@ -26,15 +26,33 @@
     }
     self.touchEnabled = YES;
     [self createWorldAndObjects];
+
     score = 0;
     
     return self;
 }
 
+- (void)onBack: (id) sender {
+    
+    [SceneManager goToMainMenu];
+}
+
+- (void)addBackButton {
+    CCMenuItemImage *goBack = [ CCMenuItemImage itemWithNormalImage:@"arrow.png" selectedImage:@"arrow.png" target:self selector:@selector(onBack:)];
+    
+    CCMenu *back = [CCMenu menuWithItems: goBack, nil];
+    
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    
+    back.position = ccp(screenSize.width-50, 32);
+    
+    [self addChild: back];
+}
+
 - (void)tick:(ccTime) dt {
     bool blockFound = false;
-    _world->Step(dt, 10, 10);
-    for(b2Body *b = _world->GetBodyList(); b; b=b->GetNext()) {
+    _breakoutWorld->Step(dt, 10, 10);
+    for(b2Body *b = _breakoutWorld->GetBodyList(); b; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
             CCSprite *sprite = (CCSprite *)b->GetUserData();
             
@@ -48,7 +66,6 @@
                 
                 b2Vec2 velocity = b->GetLinearVelocity();
                 float32 speed = velocity.Length();
-                //NSLog([NSString stringWithFormat:@"speed = %f", speed]);
                 if (speed > maxSpeed) {
                     velocity.Normalize();
                     velocity *= maxSpeed;
@@ -70,7 +87,7 @@
         
         if ((contact.fixtureA == _ballFixture && contact.fixtureB == _paddleFixture) ||
             (contact.fixtureA == _paddleFixture && contact.fixtureB == _ballFixture)) {
-            _ballBody->ApplyForceToCenter(b2Vec2(0, 50));
+            _ball->ApplyForceToCenter(b2Vec2(0, 50));
         }
     }
     
@@ -82,9 +99,7 @@
         MyContact contact = *pos;
         
         if ((contact.fixtureA == _bottomFixture && contact.fixtureB == _ballFixture) ||
-            (contact.fixtureA == _ballFixture && contact.fixtureB == _bottomFixture)) {
-            NSLog(@"Ball out of bounds");
-            
+            (contact.fixtureA == _ballFixture && contact.fixtureB == _bottomFixture)) {            
             CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -114,7 +129,7 @@
                 {
                     if (std::find(toDestroy.begin(), toDestroy.end(), block) == toDestroy.end()) {
                         toDestroy.push_back(block);
-                        score++;
+                        
                     }
                 }
             }
@@ -132,7 +147,7 @@
         CCSprite *sprite = (CCSprite *) body->GetUserData();
         [self removeChild:sprite cleanup:YES];
         
-        _world->DestroyBody(body);
+        _breakoutWorld->DestroyBody(body);
     }
 }
 
@@ -147,14 +162,14 @@
     b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
     
     b2MouseJointDef md;
-    md.bodyA = _groundBody;
-    md.bodyB = _paddleBody;
+    md.bodyA = _ground;
+    md.bodyB = _paddle;
     md.target = locationWorld;
     md.collideConnected = true;
-    md.maxForce = 1000.0f * _paddleBody->GetMass();
+    md.maxForce = 1000.0f * _paddle->GetMass();
     
-    _mouseJoint = (b2MouseJoint *)_world->CreateJoint(&md);
-    _paddleBody->SetAwake(true);
+    _mouseJoint = (b2MouseJoint *)_breakoutWorld->CreateJoint(&md);
+    _paddle->SetAwake(true);
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -173,7 +188,7 @@
 -(void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     
     if (_mouseJoint) {
-        _world->DestroyJoint(_mouseJoint);
+        _breakoutWorld->DestroyJoint(_mouseJoint);
         _mouseJoint = NULL;
     }
     
@@ -181,7 +196,7 @@
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (_mouseJoint) {
-        _world->DestroyJoint(_mouseJoint);
+        _breakoutWorld->DestroyJoint(_mouseJoint);
         _mouseJoint = NULL;
     }
 }
@@ -191,30 +206,30 @@
     
     // Create a world
     b2Vec2 gravity = b2Vec2(0.0f, -2.0f);
-    _world = new b2World(gravity);
+    _breakoutWorld = new b2World(gravity);
     
     // Create edges around the entire screen
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(0,0);
-    _groundBody = _world->CreateBody(&groundBodyDef);
+    _ground = _breakoutWorld->CreateBody(&groundBodyDef);
     
     b2EdgeShape groundBox;
     b2FixtureDef groundBoxDef;
     groundBoxDef.shape = &groundBox;
     
     groundBox.Set(b2Vec2(0,0), b2Vec2(winSize.width/PTM_RATIO, 0));
-    _bottomFixture = _groundBody->CreateFixture(&groundBoxDef);
+    _bottomFixture = _ground->CreateFixture(&groundBoxDef);
     
     groundBox.Set(b2Vec2(0,0), b2Vec2(0, winSize.height/PTM_RATIO));
-    _groundBody->CreateFixture(&groundBoxDef);
+    _ground->CreateFixture(&groundBoxDef);
     
     groundBox.Set(b2Vec2(0, winSize.height/PTM_RATIO), b2Vec2(winSize.width/PTM_RATIO,
                                                               winSize.height/PTM_RATIO));
-    _groundBody->CreateFixture(&groundBoxDef);
+    _ground->CreateFixture(&groundBoxDef);
     
     groundBox.Set(b2Vec2(winSize.width/PTM_RATIO, winSize.height/PTM_RATIO),
                   b2Vec2(winSize.width/PTM_RATIO, 0));
-    _groundBody->CreateFixture(&groundBoxDef);
+    _ground->CreateFixture(&groundBoxDef);
     
     // Create sprite and add it to the layer
     CCSprite *ball = [CCSprite spriteWithFile:@"ball.png"];
@@ -227,7 +242,7 @@
     ballBodyDef.type = b2_dynamicBody;
     ballBodyDef.position.Set(winSize.width/2/PTM_RATIO, winSize.height/2/PTM_RATIO);
     ballBodyDef.userData = ball;
-    _ballBody = _world->CreateBody(&ballBodyDef);
+    _ball = _breakoutWorld->CreateBody(&ballBodyDef);
     
     // Create circle shape
     b2CircleShape circle;
@@ -239,7 +254,7 @@
     ballShapeDef.density = 1.0f;
     ballShapeDef.friction = 0.f;
     ballShapeDef.restitution = 1.0f;
-    _ballFixture = _ballBody->CreateFixture(&ballShapeDef);
+    _ballFixture = _ball->CreateFixture(&ballShapeDef);
     
     //b2Vec2 force = b2Vec2(10, 10);
     //ballBody->ApplyLinearImpulse(force, ballBodyDef.position);
@@ -254,7 +269,7 @@
     paddleBodyDef.type = b2_dynamicBody;
     paddleBodyDef.position.Set(winSize.width/2/PTM_RATIO, 50/PTM_RATIO);
     paddleBodyDef.userData = paddle;
-    _paddleBody = _world->CreateBody(&paddleBodyDef);
+    _paddle = _breakoutWorld->CreateBody(&paddleBodyDef);
     
     // Create paddle shape
     b2PolygonShape paddleShape;
@@ -267,55 +282,16 @@
     paddleShapeDef.density = 10.0f;
     paddleShapeDef.friction = 0.4f;
     paddleShapeDef.restitution = 1.0f;
-    _paddleFixture = _paddleBody->CreateFixture(&paddleShapeDef);
+    _paddleFixture = _paddle->CreateFixture(&paddleShapeDef);
     
     // Restrict paddle along the x axis
     b2PrismaticJointDef jointDef;
     b2Vec2 worldAxis(1.0f, 0.0f);
     jointDef.collideConnected = true;
-    jointDef.Initialize(_paddleBody, _groundBody,
-                        _paddleBody->GetWorldCenter(), worldAxis);
-    _world->CreateJoint(&jointDef);
-    //    for (int numRows = 0; numRows < 5; numRows++) {
-    //        for(int i = 0; i < blockArray.count; i++) {
-    //            NSString *colour = [blockArray objectAtIndex:i];
-    //
-    //            static int padding=2;
-    //
-    //            // Create block and add it to the layer
-    //            CCSprite *block = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@_block.png", colour]];
-    //            int xOffset = padding+block.contentSize.width/2+
-    //            ((block.contentSize.width+padding)*i);
-    //
-    //            block.position = ccp(xOffset/PTM_RATIO, yOffset/PTM_RATIO);
-    //            block.tag = 2;
-    //            [self addChild:block];
-    //
-    //            // Create block body
-    //            b2BodyDef blockBodyDef;
-    //            //            blockBodyDef.type = b2_dynamicBody;
-    //            blockBodyDef.position.Set(xOffset/PTM_RATIO, yOffset/PTM_RATIO);
-    //            blockBodyDef.userData = block;
-    //            b2Body *blockBody = _world->CreateBody(&blockBodyDef);
-    //
-    //            // Create block shape
-    //            b2PolygonShape blockShape;
-    //            blockShape.SetAsBox(block.contentSize.width/PTM_RATIO/2,
-    //                                block.contentSize.height/PTM_RATIO/2);
-    //
-    //            // Create shape definition and add to body
-    //            b2FixtureDef blockShapeDef;
-    //            blockShapeDef.shape = &blockShape;
-    //            blockShapeDef.density = 10.0;
-    //            blockShapeDef.friction = 0.0;
-    //            blockShapeDef.restitution = 0.1f;
-    //            blockBody->CreateFixture(&blockShapeDef);
-    //            xOffset += 100;
-    //        }
-    //        yOffset -= 10;
-    //    }
-
-    
+    jointDef.Initialize(_paddle, _ground,
+                        _paddle->GetWorldCenter(), worldAxis);
+    _breakoutWorld->CreateJoint(&jointDef);
+   
     NSArray *blockArray = @[@"red", @"orange", @"green", @"blue", @"pink", @"yellow", @"purple", @"cyan"];
     int yOffset = 250;
     
@@ -324,7 +300,6 @@
         CCSprite *block = nil;
         for(int i = 0; i < randomNumberBlocksToGeneratePerRow; i++) {
             NSUInteger randomIndex = arc4random() % [blockArray count];
-            NSLog([NSString stringWithFormat:@"Index: %i",randomIndex]);
             NSString *colour = [blockArray objectAtIndex:randomIndex];
             // Create block and add it to the layer
             block = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@_block.png", colour]];
@@ -334,9 +309,6 @@
 
             float block_x = offset + (block_w * i);
             float block_y = yOffset / PTM_RATIO;
-            
-            NSLog([NSString stringWithFormat:@"x=%f  y=%f",block_x,block_y]);
-            NSLog([NSString stringWithFormat:@"w=%f  h=%f",block_w,block_h]);
 
             block.position = ccp(block_x * PTM_RATIO * 2, block_y * PTM_RATIO * 2);
             block.tag = 2;
@@ -346,7 +318,7 @@
             b2BodyDef blockBodyDef;
             blockBodyDef.position.Set(block_x, block_y);
             blockBodyDef.userData = block;
-            b2Body *blockBody = _world->CreateBody(&blockBodyDef);
+            b2Body *blockBody = _breakoutWorld->CreateBody(&blockBodyDef);
             
             // Create block shape
             b2PolygonShape blockShape;
@@ -370,7 +342,8 @@
     }
 
     _contactListener = new MyContactListener();
-    _world->SetContactListener(_contactListener);
+    _breakoutWorld->SetContactListener(_contactListener);
+    [self addBackButton];
     [self schedule:@selector(tick:)];
     return self;
     
@@ -378,9 +351,9 @@
 
 - (void)dealloc {
     
-    delete _world;
+    delete _breakoutWorld;
     delete _contactListener;
-    _groundBody = NULL;
+    _ground = NULL;
     [super dealloc];
     
 }
