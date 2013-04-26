@@ -1,5 +1,0 @@
-This might be too simple an idea but for my project I would like to create a version of the game breakout.
-
-Something similar to this but a bit more exciting: http://pdroms.de/wp-content/uploads/2007/12/20071209_Cube_Breakout_v3.6_(NDS_Game).PNG
-
-I intend on having the option for single player and 2 player so players can challenge each other. 
